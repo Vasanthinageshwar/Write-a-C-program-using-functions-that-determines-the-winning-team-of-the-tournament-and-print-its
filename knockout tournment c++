@@ -1,0 +1,57 @@
+There are N teams participating in a knockout tournament (where if a team loses a game, then it is
+out of the tournament). Each team is assigned an ID. In this tournament,the ID of the first team is 1,
+second team is 2, and so on till upto N. The strength of each team is decided by the strength
+that it contains in the following units:
+Batting
+Bowling
+Fielding
+All-rounder&#39;s performance
+Captain&#39;s performance
+Now, a team can win against another team if it can win at least 3 units. If a team&#39;s strength in a
+specific unit is higher than the other team, then the former team wins that specific unit. In case, the
+strength of both teams are the same in a specific unit, then the team that contains the lower team
+ID wins that unit.
+
+
+CODE
+#include <iostream>
+using namespace std;
+int main()
+{
+int teams,i,j,best=0;
+cout<<"Number of teams participating in the tournament: ";
+cin>>teams;
+int match[teams][5];
+int t1=0,t2=0;
+
+cout<<"\nIndividual team statistic/performance:"<<endl;
+
+for(i=0;i<teams;i++)
+{
+cout<<"\nTeam "<<i+1<<": ";
+for(j=0;j<5;j++)
+cin>>match[i][j];
+
+}
+
+for(i=1;i<teams;i++)
+{
+for(j=0;j<5;j++)
+{
+if(match[best][j]>=match[i][j])
+t1 += 1;
+
+else
+t2 += 1;
+
+}
+
+if(t2>t1)
+best = i;
+
+t1 = 0;
+t2 = 0;
+}
+
+cout<<"\nThe winner is Team "<<best+1;
+}
